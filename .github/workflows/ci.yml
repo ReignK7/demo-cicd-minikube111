@@ -36,3 +36,5 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKER_USER }}/demo-cicd-minikube:latest
+
+#END
