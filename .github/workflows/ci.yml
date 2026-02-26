@@ -22,7 +22,7 @@ jobs:
         uses: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USER }}/demo-cicd-minikube:latest 
+        run: docker build -t ${{ secrets.DOCKER_USER }}/demo-cicd-minikube:latest .
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USER }}/demo-cicd-minikube:latest
