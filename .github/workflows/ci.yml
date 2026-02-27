@@ -55,3 +55,5 @@ jobs:
           kubectl apply -f k8s/service.yaml
           # Comme ton image utilise le tag ":latest", Kubernetes ne la retélécharge # pas automatiquement s'il pense l'avoir déjà. On force donc le redémarrage # pour être sûr de faire tourner la toute dernière version buildée !
           kubectl rollout restart deployment demo-app
+
+#GO COM7
