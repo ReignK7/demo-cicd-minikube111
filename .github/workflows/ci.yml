@@ -44,12 +44,12 @@ jobs:
       steps:
         # 1. Le runner récupère tes fichiers (notamment le dossier k8s/)
         
-        name: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
               # 2. On déploie sur Minikube
               
-        name: Déploiement sur Minikube
+      - name: Déploiement sur Minikube
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
