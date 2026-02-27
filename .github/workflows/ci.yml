@@ -37,4 +37,21 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USER }}/demo-cicd-minikube:latest
 
-#END
+  deploy-to-vm:
+      needs: build-and-push
+      runs-on: self-hosted 
+
+      steps:
+        # 1. Le runner récupère tes fichiers (notamment le dossier k8s/)
+        
+        name: Checkout repository
+        uses: actions/checkout@v4
+
+              # 2. On déploie sur Minikube
+              
+        name: Déploiement sur Minikube
+        run: |
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
+          # Comme ton image utilise le tag ":latest", Kubernetes ne la retélécharge # pas automatiquement s'il pense l'avoir déjà. On force donc le redémarrage # pour être sûr de faire tourner la toute dernière version buildée !
+          kubectl rollout restart deployment demo-app
